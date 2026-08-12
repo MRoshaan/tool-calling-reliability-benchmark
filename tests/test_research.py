@@ -1,4 +1,5 @@
 import json
+import pytest
 
 from tcrb.research import (
     _attach_trainable_adapter_if_present,
@@ -484,7 +485,7 @@ def test_build_sft_training_args_uses_trl_sft_config():
 
 
 def test_coerce_trainable_parameter_dtype_makes_t4_adapters_fp16():
-    import torch
+    torch = pytest.importorskip("torch")
 
     parameter = torch.nn.Parameter(torch.ones(2, dtype=torch.bfloat16))
 
